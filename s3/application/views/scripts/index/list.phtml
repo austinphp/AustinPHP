@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>My CDN</title>
+	</head>
+	<body>
+	<table>
+		<?foreach ($this->entities as $entity){?>
+			<tr>
+				<td><?=$entity["name"]?></td>
+				<td><?=$entity["description"]?></td>
+				<td><img src="<?=$entity["image"]?>" height="100"></img></td>
+			</tr>
+		<?}?>
+	</table>
+	</body>
+</html>

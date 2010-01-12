@@ -1,5 +1,5 @@
 <?php
-class PickyCollection implements Iterator, ArrayAccess, Countable
+class PickyCollection extends Collection
 {
 	const FILTER_VALUE = 'ValueFilter';
 	const FILTER_NAME  = 'NameFilter'; 
@@ -43,58 +43,6 @@ class PickyCollection implements Iterator, ArrayAccess, Countable
 		}
 		return false;
 	}
-	
-	public function rewind()
-	{
-		$this->_position = 0;
-	}
-	
-	public function next()
-	{
-		$this->_position++;
-	}
-	
-	public function current()
-	{			
-		return $this->_storage[$this->_position];
-	}
-	
-	public function key()
-	{
-		return $this->_position;
-	}
-	
-	
-    /**
-     * ArrayAccess functions
-     */
-	public function offsetExists($offset)
-	{
-		if (isset($this->_storage[$offset])) {
-			return true;
-		}
-		return false;
-	}
-	
-	public function offsetGet($offset)
-	{
-		return $this->_storage[$offset];
-	}
-	
-	public function offsetSet($offset, $value)
-	{
-		if ($offset == "") {
-			$this->_storage[] = $value;
-		} else {
-			$this->_storage[$offset] = $value;			
-		}
-
-	}
-	
-	public function offsetUnset($offset)
-	{
-		unset($this->_storage[$offset]);
-	}	
 	
 	/**
 	 * Countable functions

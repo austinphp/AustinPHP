@@ -18,5 +18,9 @@ $collection[] = $test5;
 
 echo "Collection contains "  . count($collection) . " items\n";
 
+foreach ($collection as $model) {
+	echo $model->name . " " . $model->value . "\n";
+}
+
 
 ?>

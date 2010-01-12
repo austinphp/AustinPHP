@@ -12,7 +12,7 @@ class Model
 	
 	public function __get($property)
 	{
-		return $this->_storage;
+		return $this->_storage[$property];
 	}
 	
 	public function __set($property, $value)

@@ -26,8 +26,8 @@ class PickyCollection implements Iterator, ArrayAccess, Countable
 			if (!$filter->isValid($data)) {
 				return false;
 			}
-			return true;
 		}
+		return true;
 	}
 	
 	/**
@@ -35,6 +35,9 @@ class PickyCollection implements Iterator, ArrayAccess, Countable
 	 */
 	public function valid()
 	{
+		while ($this->_position < count($this->_storage) && !$this->filter($this->current())) {
+			$this->next();
+		}
 		if (isset($this->_storage[$this->_position])) {
 			return true;
 		}
@@ -48,13 +51,11 @@ class PickyCollection implements Iterator, ArrayAccess, Countable
 	
 	public function next()
 	{
-		echo "Called next";
 		$this->_position++;
 	}
 	
 	public function current()
-	{
-		echo "called current";
+	{			
 		return $this->_storage[$this->_position];
 	}
 	

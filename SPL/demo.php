@@ -36,7 +36,7 @@ $pickycollection[] = $test5;
 
 echo "PickyCollection contains "  . count($pickycollection) . " items\n";
 
-$pickycollection->addFilter(PickyCollection::FILTER_NAME, array("bannedNames" => "test5"));
+$pickycollection->addFilter(PickyCollection::FILTER_NAME, array("bannedNames" => array("test5", "test3")));
 $pickycollection->addFilter(PickyCollection::FILTER_VALUE, array("mode"=> "greaterThan", "value"=>"5"));
 
 

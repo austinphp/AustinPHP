@@ -1,28 +1,34 @@
 <?php
-class PickyCollection implements FilterIterator, ArrayAccess, Countable, ArrayAccess
+class PickyCollection implements Iterator, ArrayAccess, Countable
 {
-	const FILTER_VALUE = 'filterValue';
+	const FILTER_VALUE = 'ValueFilter';
+	const FILTER_NAME  = 'NameFilter'; 
 
 	protected $_filters = array();
 	protected $_storage = array();
 	protected $_position;
 	
-	public function __construct($iterator)
+	public function __construct()
 	{
-		
+
 	}
 	
 	public function addFilter($filterName, $params)
 	{
-		
+		//could use an autoloader here, could also use some validation
+		require ($filterName . ".php");
+		$this->_filters[] = new $filterName($params);
 	}
 	
-	public function accept()
+	protected function filter($data)
 	{
-		
+		foreach ($this->_filters as $filter) {
+			if (!$filter->isValid($data)) {
+				return false;
+			}
+			return true;
+		}
 	}
-	
-
 	
 	/**
 	 * Iterator functions
@@ -42,11 +48,13 @@ class PickyCollection implements FilterIterator, ArrayAccess, Countable, ArrayAc
 	
 	public function next()
 	{
+		echo "Called next";
 		$this->_position++;
 	}
 	
 	public function current()
 	{
+		echo "called current";
 		return $this->_storage[$this->_position];
 	}
 	

@@ -1,6 +1,8 @@
 <?php 
-require('Model.php');
-require('Collection.php');
+require ('Model.php');
+require ('Collection.php');
+require ('PickyCollection.php');
+require ('Filter.php');
 
 $collection = new Collection();
 
@@ -19,6 +21,26 @@ $collection[] = $test5;
 echo "Collection contains "  . count($collection) . " items\n";
 
 foreach ($collection as $model) {
+	echo $model->name . " " . $model->value . "\n";
+}
+
+
+$pickycollection = new PickyCollection();
+
+$pickycollection[] = $test1;
+$pickycollection[] = $test2;
+$pickycollection[] = $test3;
+$pickycollection[] = $test4;
+$pickycollection[] = $test5;
+
+
+echo "PickyCollection contains "  . count($pickycollection) . " items\n";
+
+$pickycollection->addFilter(PickyCollection::FILTER_NAME, array("bannedNames" => "test5"));
+$pickycollection->addFilter(PickyCollection::FILTER_VALUE, array("mode"=> "greaterThan", "value"=>"5"));
+
+
+foreach ($pickycollection as $model) {
 	echo $model->name . " " . $model->value . "\n";
 }
 

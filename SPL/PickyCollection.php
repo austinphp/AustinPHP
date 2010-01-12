@@ -8,11 +8,6 @@ class PickyCollection extends Collection
 	protected $_storage = array();
 	protected $_position;
 	
-	public function __construct()
-	{
-
-	}
-	
 	public function addFilter($filterName, $params)
 	{
 		//could use an autoloader here, could also use some validation

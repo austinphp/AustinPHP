@@ -7,6 +7,7 @@ class PickyCollection extends Collection
 	protected $_filters = array();
 	protected $_storage = array();
 	protected $_position;
+	public $_filterOn = true;
 	
 	public function addFilter($filterName, $params)
 	{
@@ -17,10 +18,13 @@ class PickyCollection extends Collection
 	
 	protected function filter($data)
 	{
-		foreach ($this->_filters as $filter) {
-			if (!$filter->isValid($data)) {
-				return false;
+		if ($this->_filterOn) {
+			foreach ($this->_filters as $filter) {
+				if (!$filter->isValid($data)) {
+					return false;
+				}
 			}
+			return true;
 		}
 		return true;
 	}
@@ -39,11 +43,4 @@ class PickyCollection extends Collection
 		return false;
 	}
 	
-	/**
-	 * Countable functions
-	 */
-	public function count()
-	{
-		return count($this->_storage);
-	}
 }

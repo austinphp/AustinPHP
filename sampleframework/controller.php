@@ -2,7 +2,7 @@
 require_once 'view.php';
 class Controller
 {
-	public function construct($params)
+	public function __construct($params)
 	{
 		$this->action = $params['action'];
 		$this->controller = $params['controller'];

@@ -57,7 +57,7 @@ class Collection implements Iterator, ArrayAccess, Countable
 		if ($offset == "") {
 			$this->_storage[] = $value;
 		} else {
-			$this->_storage[$offset] = $value;			
+			$this->_storage[$offset] = $value;
 		}
 
 	}

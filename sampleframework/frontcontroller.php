@@ -29,4 +29,10 @@ class FrontController
 		
 		return array("action"=>$action, "controller"=>$controller);
 	}
+	
+	public function notfound()
+	{
+		header("HTTP/1.1 404 Not Found");
+		echo ('well, that doesnt work');
+	}
 }

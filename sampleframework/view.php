@@ -1,6 +1,8 @@
 <?php
 class View
 {
+
+	
 	public function __construct($viewscript)
 	{
 		$this->viewscript = $viewscript;	
